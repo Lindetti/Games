@@ -3,7 +3,12 @@
     box-sizing: border-box;
 }
 
+body {
+	background: #393e46; 
+}
+
 .wrapper {
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;

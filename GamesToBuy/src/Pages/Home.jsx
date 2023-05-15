@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 
 const Home = () => {
 const [sales, setSales] = useState([]);
-const [numDisplayed, setNumDisplayed] = useState(10);
+const [numDisplayed, setNumDisplayed] = useState(9);
 const url = "https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15";
  useEffect(() => {
  fetch(url)
@@ -21,13 +21,29 @@ const url = "https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15";
  }
 
  const showLessButton = () => {
-    setNumDisplayed(6);
+    setNumDisplayed(9);
  }
+
+ const filterByLowestPrice = () => {
+    const sortedSales = [...sales];
+    sortedSales.sort((a, b) => a.salePrice - b.salePrice);
+    setSales(sortedSales);
+  };
+
+  const filterByBestRating = () => {
+    const sortedRating = [...sales];
+    sortedRating.sort((a, b) => b.steamRatingPercent - a.steamRatingPercent)
+    setSales(sortedRating);
+  }
     
     
     return (
         <div className="home-wrapper">
-                <h1>Games on Sale:</h1>
+                       <h1>Steam Games on Sale:</h1>
+             <div className="home-header-buttons">
+                <button onClick={filterByLowestPrice}>Filter by Lowest Price</button>
+                <button onClick={filterByBestRating}>Filter by Best Rating</button>
+             </div>
     <div className="games-onsale-div">
     {sales.slice(0, numDisplayed).map((item, index) => {
       return (
@@ -37,17 +53,20 @@ const url = "https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15";
           <img src={item.thumb} alt="image" />
           </div>
           <div className="sale-info-div">
-          <p>Is on Sale: {item.isOnSale === "1" ? "Yes" : "No"}</p>
+          <p>On sale: {item.isOnSale === "1" ? "Yes" : "No"}</p>
           <p>Sale Price: {item.salePrice}</p>
           <p>Normal Price: {item.normalPrice}</p>
           <p>Steam Rating: {item.steamRatingPercent}%</p>
           <p>Steam Rating Text: {item.steamRatingText}</p>
+          </div>
+          <div className="buyNowBtn">
           <a href={`https://store.steampowered.com/app/${item.steamAppID}`}  target="_blank">Get it now!</a>
           </div>
         </div>
       )
     })}
      </div>
+     <div className="buttons"> 
      {numDisplayed < sales.length ? (
     <div className="showMoreButton">
     <button onClick={showMoreButton}>Show All</button>
@@ -58,6 +77,7 @@ const url = "https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15";
     </div>
     )
 }
+</div>
 
         </div>
     )
