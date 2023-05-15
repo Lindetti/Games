@@ -2,7 +2,7 @@ import "../Styles/Footer.scss";
 const Footer = () => {
     return (
         <footer>
-            <p>Footer</p>
+            <p>Made by Alexander Lind & Josef Abdo</p>
         </footer>
     )
 }

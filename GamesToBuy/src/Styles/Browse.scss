@@ -1,0 +1,58 @@
+.browse-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: 100vh;
+
+    .title {
+        color:  #f96d00;
+    }
+
+    form {
+        display: flex;
+        gap: 0.5rem;
+        input {
+            padding: 1rem;
+        }
+
+        button {
+            padding: 1rem;
+            cursor: pointer;
+        }
+    }
+    
+    .games {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+
+        .allGames {
+            height: 250px;
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f2f2f2; 
+            gap: 1rem;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 5px;
+
+            a {
+                background-color: rgb(211, 211, 211);
+                padding: 1rem;
+                text-align: center;
+                text-decoration: none;
+                color: black;
+                border-radius: 5px;
+                width: 200px;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
